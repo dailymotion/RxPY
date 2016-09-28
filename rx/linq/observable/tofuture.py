@@ -40,8 +40,7 @@ def to_future(self, future_ctor=None):
         future.set_exception(err)
 
     def on_completed():
-        if has_value[0]:
-            future.set_result(value[0])
+        future.set_result(value[0] if has_value[0] else None)
 
     source.subscribe(on_next, on_error, on_completed)
 
